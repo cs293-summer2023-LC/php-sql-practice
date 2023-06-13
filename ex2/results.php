@@ -23,8 +23,6 @@ neighborhood id. Call this function, and display the neighborhood name in the
 <h1> element.
 
 
-Hint: you'll have to first get $db, then call your function,
-then loop through the results with foreach.
 */
 
 
@@ -72,7 +70,7 @@ include("src/functions.php");
 
     
     
-    <h1>You picked <!-- enter neighborhood name here --></h1>
+        <h1>You picked <!-- enter neighborhood name here --></h1>
 
 
 

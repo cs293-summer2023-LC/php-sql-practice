@@ -23,8 +23,6 @@ neighborhood id. Call this function, and display the neighborhood name in the
 <h1> element.
 
 
-Hint: you'll have to first get $db, then call your function,
-then loop through the results with foreach.
 */
 
 
@@ -70,24 +68,24 @@ include("src/functions.php");
         </nav>
     <div class="container mt-5">
 
-    <h1>Select neighborhood:</h1>
-                <form action="results.php" method="GET" >
+        <h1>Select neighborhood:</h1>
+        <form action="results.php" method="GET" >
 
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <select name="neighborhoodId">
+            <div class="row">
+                <div class="col-sm-8">
+                    <select name="neighborhoodId">
 
 
 
-                            </select>
- 
-                        </div>
-                        <div class=" col-sm-4">
-                            <button type="select" class="btn btn-primary">View</button>
-                        </div>
-                    </div>
+                    </select>
 
-                </form>
+                </div>
+                <div class=" col-sm-4">
+                    <button type="select" class="btn btn-primary">View</button>
+                </div>
+            </div>
+
+        </form>
 
 
 

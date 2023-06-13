@@ -34,8 +34,7 @@ listings from the selected neighborhood, ordered by rating, descending.
 </div>
 
 
-Hint: you'll have to first get $db, then call your function,
-then loop through the results with foreach.
+
 */
 
 
