@@ -23,7 +23,7 @@ function dbConnect(){
 function getAllListings($db){
     try {
         $stmt = $db->prepare("select * from listings");   
-        $stmt->execute(array(":num"=>$num));
+        $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     
@@ -36,22 +36,15 @@ function getAllListings($db){
 
 
 /* query with one SQL argument */
-function getListings($db, $num){
+function getListingsBelowPrice($db, $price){
+    echo $num;
     try {
-        $stmt = $db->prepare("select * from listings limit :num");   
-        $stmt->execute(array(":num"=>$num));
+        $stmt = $db->prepare("select * from listings where price< :price order by price desc");   
+        $stmt->bindParam(':price',$price);
+        $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        /** see the resulting array **/
-        var_dump($rows);
-    
-        /** loop through the rows: **/
-        foreach ($rows as $row){
-            $id=$row["id"];
-            $name=$row["name"];
-            $year=$row["year"];
-            echo "id: $id, name: $name, year: $year";
-        }
+        return $rows;
     
     }
     catch (Exception $e) {
@@ -66,7 +59,8 @@ function getListingsByNeighborhoodIdAndMaxPrice($db, $neighborhoodId, $price){
         $stmt = $db->prepare("select * from listings
         join neighborhoods  on neighborhoods.id=listings.neighborhoodId 
         where listings.price <= :price and neighborhoods.id = :neighborhoodId 
-        order by listings.price desc         
+        order by listings.price desc  
+        limit 5       
         ");   
         $stmt->execute(array(":price"=>$price, ":neighborhoodId"=>$neighborhoodId));
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -98,10 +92,13 @@ $db=dbConnect();
 //var_dump($rows);
 
 //get x number of listings
-//$rows=getLIstings($db, 10);
+$price=150;
+//$rows=getListingsBelowPrice($db, $price);
 //var_dump($rows);
 
 // get listings from neighborhood (given id) and max price (given price)
+$neighborhoodId=22; //Eastmoreland
+$price=100;
 //$rows=getListingsByNeighborhoodIdAndMaxPrice($db, $neighborhoodId, $price);
 //var_dump($rows);
 
