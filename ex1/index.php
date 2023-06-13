@@ -2,6 +2,8 @@
 
 /* 
 
+Exercise 1: Get and display all neighborhoods.
+
 1. In src/functions.php, write a PHP function that gets
 all neighborhood names and ids, sorted alphabetically by neighborhood.
 
